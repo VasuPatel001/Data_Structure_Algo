@@ -1,6 +1,7 @@
 # Quick sort in Python
-
 import random
+
+
 class Solution(object):
     def quickSort(self, nums) -> list[int]:
         """
