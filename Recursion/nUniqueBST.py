@@ -6,8 +6,6 @@ hence time complexity is O(2^n * n) because we are choosing 'n' different root e
 2^n because there are 2 recursive calls being made with each 
 
 Space complexity: max call step depth = O(n)
-
-
 """
 
 def how_many_bsts(n):
