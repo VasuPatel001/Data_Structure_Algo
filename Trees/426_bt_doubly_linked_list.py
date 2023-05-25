@@ -42,9 +42,6 @@ is represented by
 If the returned data structure is not circular or otherwise incorrect, the output may contain the correct portion of it, and you will find an error message in the ERROR field.
 """
 
-
-
-
 # For your reference:
 class BinaryTreeNode:
     def __init__(self, value):
@@ -62,11 +59,13 @@ def binary_tree_to_cdll(root):
     # Write your code here.
     if root == None: return None
     
+    # leaf node worker
     if root.left == None and root.right == None:
         root.left = root
         root.right = root
         return root
     
+    # internal node worker
     head_left = binary_tree_to_cdll(root.left)
     head_right = binary_tree_to_cdll(root.right)
     
@@ -93,8 +92,8 @@ def binary_tree_to_cdll(root):
     # If both head_left and head_right are non-NULL, we have to join the first and the second
     # circular doubly linked list via the current root node.
 
-    tail1 = head_left.left;
-    tail2 = head_right.left;
+    tail1 = head_left.left
+    tail2 = head_right.left
 
     tail1.right = root
     root.left = tail1

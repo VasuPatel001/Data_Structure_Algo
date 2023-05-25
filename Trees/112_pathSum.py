@@ -95,7 +95,7 @@ class TreeNode:
 
 
 class Solution:
-    def helper(self, node: Optional[TreeNode], remain: int) -> bool:
+    def helper(self, node: TreeNode, remain: int) -> bool:
         if node == None: return 
         # pre-order work
         remain = remain - node.val
