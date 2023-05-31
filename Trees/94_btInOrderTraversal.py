@@ -58,10 +58,10 @@ def inorder(root):
     #     # internal node worker
     #     if node.left != None: helper(node.left)
     
-    #     # pre-order work
+    #     # in-order work
     #     result.append(node.value)
     #     if node.right != None: helper(node.right)
-        
+
     #     return
     
     # helper(root)
