@@ -4,3 +4,5 @@ Important Interview coding question: [link here](https://docs.google.com/spreads
 
 This document contains various aspects of coding preparation items:
 1. [Sorting](https://github.com/VasuPatel001/Interview_coding/tree/main/Sorting)
+2. [Recursion](https://github.com/VasuPatel001/Data_Structure_Algo/tree/main/Recursion)
+3. [Trees](https://github.com/VasuPatel001/Data_Structure_Algo/tree/main/Trees)
