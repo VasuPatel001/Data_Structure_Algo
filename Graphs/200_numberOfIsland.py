@@ -36,6 +36,7 @@ Space complexity: O(E) we create neighbors list which can grow upto O(E) long
 
 import collections
 
+
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         def getNeighbors(row, col):
@@ -49,7 +50,7 @@ class Solution:
             if col < len(grid[0]) - 1:
                 neighbors.append([row, col + 1])
             return neighbors
-    
+
         # depth first search solution
         def dfs(row, col):
             grid[row][col] = '0'
@@ -58,7 +59,7 @@ class Solution:
                 i, j = neighbor
                 if grid[i][j] != '0':
                     dfs(i, j)
-        
+
         # breadth first search solution
         def bfs(row, col):
             # make this visited
