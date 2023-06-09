@@ -18,12 +18,12 @@ def bridges(n: int, connections: list[int]):
     
     visited = [-1] * n
     parent = [-1] * n
-    
+
     # dfs undirected graph arrival, departure time
     timestamp = [0]
     arrival = [-1] * n
     departure = [-1] * n
-    
+
     # minArrival is used to keep track of back edges going to the highest level
     minArrival = [-1] * n
 
@@ -32,11 +32,11 @@ def bridges(n: int, connections: list[int]):
 
     def dfs(node: int):
         visited[node] = 1
-        
+
         # update arrival time
         arrival[node] = timestamp[0]
         timestamp[0] += 1
-        
+
         # initialize the minArrival of the node to be its own arrival time
         minArrival[node] = arrival[node]
 
@@ -46,14 +46,14 @@ def bridges(n: int, connections: list[int]):
             else:  # neighbor is already visited and CAN be a back edge
                 if parent[node] != neighbor:  # it is a back edge
                     minArrival[node] = min(arrival[neighbor], minArrival[node])
-        
+
         # TARJAN'S ALGO 
         # when minArrival[node] == its own arrival time, we can say that the node -> parent connection is a bridge
         if arrival[node] == minArrival[node] and node != 0:  # last condition is used to check if the node is NOT root (0 node)
             result.append([node, parent[node]])  # identified bridge connection, append it to result
-        
+
         # update departure time
         departure[node] = timestamp[0]
         timestamp[0] += 1
-        
+
         return minArrival[node]
