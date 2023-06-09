@@ -1,5 +1,7 @@
 """
+TARJAN'S ALGORITHM:
 Pseudo code for Bridges problem on Undirected DFS graph:
+
 https://uplevel.interviewkickstart.com/resource/editorial/rc-codingproblem-484800-917569-54-337
 
 Bridges problem: Identify important connection which if taken out disconnects the graph.
@@ -45,6 +47,7 @@ def bridges(n: int, connections: list[int]):
                 if parent[node] != neighbor:  # it is a back edge
                     minArrival[node] = min(arrival[neighbor], minArrival[node])
         
+        # TARJAN'S ALGO 
         # when minArrival[node] == its own arrival time, we can say that the node -> parent connection is a bridge
         if arrival[node] == minArrival[node] and node != 0:  # last condition is used to check if the node is NOT root (0 node)
             result.append([node, parent[node]])  # identified bridge connection, append it to result
