@@ -42,7 +42,7 @@ class Solution:
         departure = [-1] * numCourses
         timestamp = [0]
 
-        def dfs_check_cycle(source, result) -> bool:
+        def dfs_check_cycle(source, topsort) -> bool:
             visited[source] = 1
             # update arrival timestamp
             arrival[source] = timestamp[0]
@@ -51,7 +51,7 @@ class Solution:
             for neighbor in adjacency_list[source]:
                 if visited[neighbor] == -1:
                     # check if there's a cycle for neighbor successive course
-                    if dfs_check_cycle(neighbor, result):
+                    if dfs_check_cycle(neighbor, topsort):
                         return True
                 else: 
                     # back edge
@@ -63,16 +63,16 @@ class Solution:
             departure[source] = timestamp[0]
             timestamp[0] += 1
 
-            # append source to the result when departing from it 
-            result.append(source)
+            # append source to the topsort when departing from it 
+            topsort.append(source)
             return False
 
-        result = []
+        topsort = []
         for course in range(numCourses):
             if visited[course] == -1:
-                if dfs_check_cycle(course, result):
+                if dfs_check_cycle(course, topsort):
                     # cycle/loop found, hence there's no way course schedule can be completed, hence return []
                     return []
-        # reverse the result[] to sort the ouput array in topological order
-        result.reverse()
-        return result
+        # reverse the topsort[] to sort the ouput array in topological order
+        topsort.reverse()
+        return topsort
