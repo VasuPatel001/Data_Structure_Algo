@@ -43,11 +43,11 @@ class Solution:
             neighbors = []
             if row > 0:
                 neighbors.append([row-1, col])
-            if row < len(grid) - 1:
+            if row + 1 < len(grid):
                 neighbors.append([row+1, col])
             if col > 0:
                 neighbors.append([row, col-1])
-            if col < len(grid[0]) - 1:
+            if col + 1 < len(grid[0]):
                 neighbors.append([row, col + 1])
             return neighbors
 
