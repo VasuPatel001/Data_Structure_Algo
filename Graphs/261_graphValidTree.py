@@ -94,7 +94,8 @@ def is_it_a_tree(node_count, edge_start, edge_end):
         for neighbor in adjacency_list[source]:
             if visited[neighbor] == -1:
                 parent[neighbor] = source
-                dfs_check_loop(neighbor)
+                if dfs_check_loop(neighbor):  # check if there's cycle when neighbor is passed
+                    return True
             else:  # neighbor is already visited -> check for loops
                 if parent[source] != neighbor:  # if the parent of the source is NOT neighbor => there's a loop
                     return True
