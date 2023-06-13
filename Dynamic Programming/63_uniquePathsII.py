@@ -49,7 +49,7 @@ class Solution:
             if obstacleGrid[0][col] == 1:
                 break
             dp_table[0][col] = 1
-        print(dp_table)
+
         # initialize dp_table
         for row in range(1, m):
             for col in range(1, n):
