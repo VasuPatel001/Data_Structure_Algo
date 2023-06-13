@@ -28,6 +28,7 @@ triangle[i].length == triangle[i - 1].length + 1
 
 class Solution:
     def minimumTotal(self, triangle: list[list[int]]) -> int:
+        # Time: O(n^2) and Space: O(n^2)
         # construct a dp_table similar to shape of trianlge
         dp_table = [[0 for _ in range(row+1)] for row in range(len(triangle))]
 
@@ -42,3 +43,10 @@ class Solution:
                 dp_table[row][col] = triangle[row][col] + min_value
 
         return dp_table[0][0]
+
+        # Time: O(n^2) and Space: O(1)
+        for row in range(len(triangle) - 2, -1, -1):
+            for col in range(row + 1):
+                min_value = min(triangle[row+1][col], triangle[row+1][col+1])
+                triangle[row][col] += min_value
+        return triangle[0][0]
