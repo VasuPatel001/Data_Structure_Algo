@@ -52,10 +52,10 @@ def count_ways_to_climb(steps, n):
     # Write your code here.
     dp_list = [0] * (n + 1)
     dp_list[0] = 1
-    
+
     for i in range(1, n+1):
         for step in steps:
             if i - step >= 0:
                 dp_list[i] += dp_list[i-step]
-    
+
     return dp_list[n]
