@@ -25,7 +25,7 @@ class Solution:
         # Approach 1 (efficient): beats ~80% in leetcode
         n = len(nums)
         last = n - 1
-        for  i in range(n-1, -1, -1):
+        for i in range(n-1, -1, -1):
             if i + nums[i] >= last:
                 last = i  # remember the last house you can reach
         return last == 0
