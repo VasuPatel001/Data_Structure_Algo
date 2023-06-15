@@ -7,3 +7,4 @@ This document contains various aspects of coding preparation items:
 2. [Recursion](https://github.com/VasuPatel001/Data_Structure_Algo/tree/main/Recursion)
 3. [Trees](https://github.com/VasuPatel001/Data_Structure_Algo/tree/main/Trees)
 4. [Graphs](https://github.com/VasuPatel001/Data_Structure_Algo/tree/main/Graphs)
+5. [Dynamic Programming](https://github.com/VasuPatel001/Data_Structure_Algo/tree/main/Dynamic%20Programming)
