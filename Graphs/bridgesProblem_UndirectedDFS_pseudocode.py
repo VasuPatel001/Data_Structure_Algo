@@ -11,7 +11,7 @@ Bridges problem is solved using "DFS undirected graph Arrival time of back edges
 
 
 def bridges(n: int, connections: list[int]):
-    # form a graph using adjacency_list
+    # Step 1: form a graph using adjacency_list
     adjList = [[] for _ in range(n)]  # where n is total number of nodes
     for (src, dst) in connections:
         adjList[src].append(dst)
@@ -29,8 +29,9 @@ def bridges(n: int, connections: list[int]):
     minArrival = [-1] * n
 
     # result array stores all the bridges
-    result = []
+    bridgesList = []
 
+    # Step 2: dfs function
     def dfs(node: int):
         visited[node] = 1
 
@@ -51,10 +52,14 @@ def bridges(n: int, connections: list[int]):
         # TARJAN'S ALGO 
         # when minArrival[node] == its own arrival time, we can say that the node -> parent connection is a bridge
         if arrival[node] == minArrival[node] and node != 0:  # last condition is used to check if the node is NOT root (0 node)
-            result.append([node, parent[node]])  # identified bridge connection, append it to result
+            bridgesList.append([node, parent[node]])  # identified bridge connection, append it to result
 
         # update departure time
         departure[node] = timestamp[0]
         timestamp[0] += 1
 
         return minArrival[node]
+
+    # Step 3: outer loop
+    dfs(0)
+    return bridgesList
