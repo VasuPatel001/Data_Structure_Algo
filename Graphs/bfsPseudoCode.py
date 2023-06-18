@@ -1,5 +1,10 @@
-import queue
 from collections import deque
+
+"""
+BFS Pseudocode
+Time complexity: O(V + E), because while loop runs over each vertex and for loop runs over each of the edges.
+Space complexity: O(V) because we create a queue
+"""
 
 
 class Graph:
