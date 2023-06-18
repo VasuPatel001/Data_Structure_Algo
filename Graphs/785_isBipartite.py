@@ -45,7 +45,21 @@ class Solution:
         visited = [-1] * n
         parent = [None] * n
         distance = [-1] * n
+        color = [-1] * n
 
+        def dfs_check_bipartite(source):
+            visited[source] = 1
+            for ngb in graph[source]:
+                if visited[ngb] == -1:
+                    parent[ngb] = source
+                    color[ngb] = not color[source]
+                    if not dfs_check_bipartite(ngb):
+                        return False
+                else:  # ngb is already visited and hence cycle might be there
+                    if color[source] == color[ngb]:
+                        return False
+            return True
+        
         def bfs_check_same_level(source):
             # nonlocal visited
             # nonlocal level
@@ -67,11 +81,16 @@ class Solution:
                                 return True
 
             return False
-        
+
         components = 0
         for i in range(n):
             components += 1
             if visited[i] == -1:
-                if bfs_check_same_level(i): 
+                if bfs_check_same_level(i):
+                    return False
+
+                # check bi-partite using dfs
+                color[i] = 0  # set the color of source to be 0 and other adjoining will be set to opposite colors
+                if not dfs_check_bipartite(i):
                     return False
         return True
