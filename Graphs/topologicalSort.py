@@ -17,7 +17,7 @@ class Graph:
             if visited[neighbor] == -1:
                 dfs(neighbor)
             else:  # neighbor is already visited
-                # back edge
+                # back edge -> cycle/loop found
                 if departure time of neighbor is NOT set
 
                 # forward edge
@@ -28,4 +28,35 @@ class Graph:
         
         departure[source] = time + 1
         topologicalSort.append(source)
+
+
+    # kahn's algorithm uses the concept of 0 indegree to build topological sort
+    def kahn_algo(edges_list: list[list[int]], totalNode: int):
+        from collections import deque
+        q = deque()
+        adjList = [[] for _ in range(totalNode)]
+        indegree = [0 for _ in range(totalNode)]
+        topsort = []
+
+        for src, dst in edges_list:
+            adjList[src].append(dst)
+            indegree[dst] += 1
+        
+        for node in range(totalNode):
+            if indegree[node] == 0:
+                q.append(node)
+        
+        while q:
+            node = q.popleft()
+            topsort.append(node)
+            for ngb in adjList[node]:
+                indegree[ngb] -= 1
+                if indegree[node] == 0:
+                    q.append(ngb)
+        if len(topsort) < totalNode:
+            # cycle is found and hence topsort is not possible because DAG cannot be found
+            return [] # topsort would be an empty list
+        
+        # Directed Acyclic Graph is found and hence topsort should be return as it is without reversing unlike the arrival, departure mehtod 
+        return topsort
 

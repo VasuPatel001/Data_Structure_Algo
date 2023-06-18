@@ -5,10 +5,11 @@ Pseudo code for Bridges problem on Undirected DFS graph:
 https://uplevel.interviewkickstart.com/resource/editorial/rc-codingproblem-484800-917569-54-337
 
 Bridges problem: Identify important connection which if taken out disconnects the graph.
-Bridges problem is solved using DFS undirected graph arrival time of back edges. 
-
+Bridges problem is solved using "DFS undirected graph Arrival time of back edges". 
 
 """
+
+
 def bridges(n: int, connections: list[int]):
     # form a graph using adjacency_list
     adjList = [[] for _ in range(n)]  # where n is total number of nodes

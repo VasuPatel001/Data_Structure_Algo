@@ -27,7 +27,7 @@ All the pairs prerequisites[i] are unique.
 
 
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
         # form a graph using pre-requisites list
         adjacency_list = [[] for _ in range(numCourses)]
         for (course, pre_req) in prerequisites:

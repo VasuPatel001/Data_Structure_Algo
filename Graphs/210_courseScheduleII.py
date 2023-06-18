@@ -53,7 +53,7 @@ class Solution:
                     # check if there's a cycle for neighbor successive course
                     if dfs_check_cycle(neighbor, topsort):
                         return True
-                else: 
+                else:
                     # back edge
                     if departure[neighbor] == -1:
                         # there's a cycle/loop in the graph detected by presence of back edge

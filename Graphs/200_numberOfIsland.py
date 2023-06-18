@@ -38,7 +38,7 @@ import collections
 
 
 class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands(self, grid: list[list[str]]) -> int:
         def getNeighbors(row, col):
             neighbors = []
             if row > 0:
