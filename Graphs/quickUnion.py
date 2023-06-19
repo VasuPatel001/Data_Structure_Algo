@@ -53,7 +53,11 @@ def minTimeWhenBecomesFriends(logs: list[list[int]], n: int):
             else:
                 parent[rootv] = rootu
                 size[rootu] += size[rootv]
-        components -= 1
+            
+            # when union operation is performed, component is reduced by 1
+            # Note: this is inside if condition
+            components -= 1
+        
         if components == 1:
             return t  # timestamp at which everyone become friends
     
