@@ -71,23 +71,24 @@ class TreeNode:
 
 class Solution:
     def helper(self, node: TreeNode) -> int:
-            # leaf node worker
-            if node.left == None and node.right == None: return 0
+        # leaf node worker
+        if node.left is None and node.right is None: 
+            return 0
 
-            # pre-order work
-            left_dia = 0
-            right_dia = 0
+        # pre-order work
+        left_dia = 0
+        right_dia = 0
 
-            # internal node worker updates left_dia and right_dia
-            if node.left != None: left_dia = self.helper(node.left) + 1
-            if node.right != None: right_dia = self.helper(node.right) + 1
+        # internal node worker updates left_dia and right_dia
+        if node.left != None: left_dia = self.helper(node.left) + 1
+        if node.right != None: right_dia = self.helper(node.right) + 1
 
-            # post order work
-            myDia = left_dia + right_dia
-            self.maxDiameter = max(self.maxDiameter, myDia)
-            
-            # return max of left, right dia to top level managers
-            return max(left_dia, right_dia)
+        # post order work
+        myDia = left_dia + right_dia
+        self.maxDiameter = max(self.maxDiameter, myDia)
+        
+        # return max of left, right dia to top level managers
+        return max(left_dia, right_dia)
     
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         if root == None: return 0

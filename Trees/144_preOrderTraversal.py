@@ -45,27 +45,26 @@ def preorder(root):
     # Write your code here.
     # ##########################
     # # Recursive solution
-    # if root is None: return []
+    if root is None: return []
 
-    # result = []
+    result = []
 
-    # def helper(node):
-    #     # pre-order work
-    #     result.append(node.value)
+    def helper(node):
+        # pre-order work
+        result.append(node.value)
 
-    #     # leaf node worker
-    #     if node.left == None and node.right == None:
-    #         return
+        # leaf node worker
+        if node.left is None and node.right is None:
+            return
 
-    #     # internal node worker
-    #     if node.left != None: helper(node.left)
-    #     if node.right != None: helper(node.right)
+        # internal node worker
+        if node.left is not None: helper(node.left)
+        if node.right is not None: helper(node.right)
 
-    #     return
+        return
 
-    # helper(root)
-
-    # return result
+    helper(root)
+    return result
 
     ##########################
     # Iterative solution

@@ -1,7 +1,10 @@
-    """_summary_
-    """
-
-
+"""
+DFS can be carried out iteratively using a stack[] that simulates the recursion call stack.
+We visualize three zones:
+    arrival for pre-order work
+    interim for in-order work
+    departure for post-order work
+"""
 
 # For your reference:
 class BinaryTreeNode:

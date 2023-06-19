@@ -73,28 +73,31 @@ def find_single_value_trees(root):
      int32
     """
     # Write your code here.
-    if root == None: return 0
+    if root is None:
+        return 0
     count = [0]
-    
+
     def dfs(node):
         # pre-order intialization
         isLeftUnival = True
         isRightUnival = True
-        
+
         # leaf node worker
-        if node.left == None and node.right == None:
+        if node.left is None and node.right is None:
             count[0] += 1
             return True
-        
+
         # internal node worker
-        if node.left != None:
+        if node.left is not None:
             isLeftUnival = dfs(node.left) and node.value == node.left.value
-        
-        if node.right != None:
+
+        if node.right is not None:
             isRightUnival = dfs(node.right) and node.value == node.right.value
-        
-        if isLeftUnival and isRightUnival: count[0] += 1
+
+        # post-order work of updating count[0]
+        if isLeftUnival and isRightUnival:
+            count[0] += 1
         return isLeftUnival and isRightUnival
-    
+
     dfs(root)
     return count[0]

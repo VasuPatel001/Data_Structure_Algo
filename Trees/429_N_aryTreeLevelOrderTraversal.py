@@ -57,7 +57,7 @@ List<List<Integer>> function getNaryLevelOrder(TreeNode root) {
 
 """
 Time Complexity: O(N) because we make a one time pass over each nodes of the binary tree to create a list of size N (i.e. input binary tree size) 
-Space Complexity: O(N) because we use output array 'result' 
+Space Complexity: O(N) because we use output array 'result'
 """
 
 # Definition for a Node.
@@ -66,23 +66,24 @@ class Node:
         self.val = val
         self.children = children
 
-import queue
+from collections import deque
 class Solution:
     def levelOrder(self, root: 'Node') -> list[list[int]]:
         result = []
         if root == None: return result
-        q = queue.Queue(maxsize=0)
-        q.put(root)
-        while not q.empty():
-            count = q.qsize()
+        q = deque()
+        q.append(root)
+        while q:
+            count = len(q)
             temp = []
-            for i in range(count):
-                node = q.get()
+            for _ in range(count):
+                node = q.popleft()
                 temp.append(node.val)
 
                 # for N-ary tree we iterate over each children present in a list form
                 for child in node.children:
-                    if child is not None: q.put(child)
+                    if child is not None:
+                        q.append(child)
             
             result.append(temp)
         return result
