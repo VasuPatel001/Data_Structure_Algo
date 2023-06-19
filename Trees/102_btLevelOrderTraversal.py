@@ -75,6 +75,9 @@ import queue  # Python3 queue data structure
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> list[list[int]]:
+        #########################################################
+        # STANDARD ITERATIVE APPROACH
+        #########################################################
         result = []  # List[List[int]]
         if root == None: return result
         
@@ -95,4 +98,35 @@ class Solution:
             
             # append i_th layer traversal to result list
             result.append(temp)
+        return result
+
+        #########################################################
+        # RECURSIVE APPROACH
+        #########################################################
+        if root is None: 
+            return []
+        result = []
+        
+        def bfs_recursive(q):
+            # leaf node worker
+            if len(q) == 0:
+                return
+
+            # pre-order work
+            temp = []
+            newq = []
+
+            # internal node worker
+            for node in q:
+                temp.append(node.val)
+
+                if node.left is not None:
+                    newq.append(node.left)
+
+                if node.right is not None:
+                    newq.append(node.right)
+            result.append(temp)
+            bfs_recursive(newq)
+
+        bfs_recursive(root)
         return result
