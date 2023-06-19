@@ -69,28 +69,38 @@ class TreeNode:
 Time Complexity: O(N) because we make a one time pass over each nodes of the binary tree to create a list of size N (i.e. input binary tree size) 
 Space Complexity: O(N) because we use output array 'result' 
 """
-import queue  # Python3 queue data structure
+from collections import deque
 class Solution:
     def levelOrderBottom(self, root: Optional[TreeNode]) -> list[list[int]]:
-        result = []  # List[List[int]]
-        if root == None: return result
+        if root is None:
+            return []
         
+        # Note ALTERNATIVELY: we can declare result to be a deque and save time for reversing the result
+        # result = deque()
+        result = []  # List[List[int]]
+
         # initialize queue (FIFO) with root node in it
-        q = queue.Queue(maxsize=0)  # maxsize <= 0 will help us create queue of infinite size
-        q.put(root)
-        while not q.empty():
-            count = q.qsize()
+        q = deque()  # maxsize <= 0 will help us create queue of infinite size
+        q.append(root)
+        while q:
+            count = len(q)
             temp = []
             # looping over the counts helps create List[List] that is required for the output
             for i in range(count):
-                node = q.get() # get method extracts and return the first element in queue
+                node = q.popleft()  # get method extracts and return the first element in queue
                 temp.append(node.val)
 
                 # check for left, right nodes; if present add it to queue
-                if node.left is not None: q.put(node.left)
-                if node.right is not None: q.put(node.right)
+                if node.left is not None:
+                    q.append(node.left)
+                if node.right is not None:
+                    q.append(node.right)
             
             # append i_th layer traversal to result list
             result.append(temp)
+            # ALTERNATIVELY:
+            # result.appenleft(temp)
+
         result.reverse()
+        # when result is deque, we need not reverse the result[]
         return result
