@@ -36,12 +36,12 @@ class Solution:
             slate.append(ch.upper())
             self.helper(s, cur_idx + 1, slate, result)
             slate.pop()
-        else: # ch is a numeric digit
+        else:  # ch is a numeric digit
             slate.append(ch)
             self.helper(s, cur_idx + 1, slate, result)
             slate.pop()
 
-    def letterCasePermutation(self, s: str) -> List[str]:
+    def letterCasePermutation(self, s: str) -> list[str]:
         result = []
         self.helper(s, 0, [], result)
         return result
