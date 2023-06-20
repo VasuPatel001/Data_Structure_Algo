@@ -51,3 +51,40 @@ def merge(A, start, mid, end):
         j += 1
     A[start:end+1] = aux  # IMP part was understanding "arr[start:end+1] = aux"
     return
+
+
+def mergeSort(A: list[int]) -> list[int]:
+    def mSortHelper(A: list[int], start: int, end: int):
+        if start >= end:
+            return
+
+        # compute mid idx
+        mid = start + (end-start)//2
+        mSortHelper(A, start, mid)
+        mSortHelper(A, mid+1, end)
+
+        # merge routine
+        i = start
+        j = mid + 1
+        aux = []  # Aux space: O(N)
+        # Merge from two halves
+        while (i <= mid and j <= end):
+            if A[i] <= A[j]:  # <= ensure stability
+                aux.append(A[i])
+                i += 1
+            else:  # A[i] > A[j]
+                aux.append(A[j])
+                j += 1
+
+        # Gather phase
+        while i <= mid:
+            aux.append(A[i])
+            i += 1
+        while j <= end:
+            aux.append(A[j])
+            j += 1
+
+        A[start:end+1] = aux
+
+    mSortHelper(A, 0, len(A)-1)
+    return A
