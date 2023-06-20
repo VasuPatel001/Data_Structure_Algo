@@ -49,5 +49,5 @@ def merge(A, start, mid, end):
     while j <= end:
         aux.append(A[j])
         j += 1
-    A[start:end+1] = aux  # hardest part was understanding "arr[start:end+1] = aux"
+    A[start:end+1] = aux  # IMP part was understanding "arr[start:end+1] = aux"
     return
