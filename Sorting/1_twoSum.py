@@ -30,10 +30,12 @@ Time Complextity: O(N) because at most we would need to add n-1 elements to dict
 Space Complexity: O(N): because at most we would need to add n-1 elements to dict befor finding that 0 and n-1 elements add to target value
 """
 
+
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         num_idx = {}
         for i, num in enumerate(nums):
             rem = target - num
-            if rem in num_idx: return [num_idx[rem], i]
+            if rem in num_idx:
+                return [num_idx[rem], i]
             num_idx[num] = i

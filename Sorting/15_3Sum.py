@@ -29,26 +29,25 @@ Constraints:
 -105 <= nums[i] <= 105
 """
 
+
 class Solution:
-    def threeSum(self, nums: List[int]) -> list[list[int]]:
-        nums.sort() # by sorting, duplicate values come next to each other
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        nums.sort()  # by sorting, duplicate values come next to each other
         result = []
         for i in range(len(nums)):
-            if i > 0 and nums[i] == nums[i-1]: # to remove the possibility of duplicate triplets
+            if i > 0 and nums[i] == nums[i-1]:  # to remove the possibility of duplicate triplets
                 continue
-            
             j = i + 1
-            k = len(nums) -1
+            k = len(nums) - 1
             while j < k:
                 s = nums[i] + nums[j] + nums[k]
                 if s < 0:
                     j += 1
                 elif s > 0:
                     k -= 1
-                else: # s == 0
+                else:  # s == 0
                     result.append([nums[i], nums[j], nums[k]])
                     j += 1
                     while nums[j-1] == nums[j] and j < k:
                         j += 1
         return result
-                
