@@ -20,7 +20,7 @@ Constraints:
 
 """
 Time Complexity: O(len(nums) * target)
-Space Complexity: 
+Space Complexity: O(len(nums) * target) (Method 1) and O(target) for Method 2
 """
 
 
