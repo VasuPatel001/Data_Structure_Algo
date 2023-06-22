@@ -1,0 +1,494 @@
+IK Trees Class 5.21.23: https://docs.google.com/document/d/1yCLUhHlNjoAOb5TFfopb0LgjiFJi7P1V-dMnEUtleys/edit
+
+-----------------------------------------------------------------
+Breadth-First (Level Order Traversal)
+
+// Initialize an empty result array
+// Handle an empty tree as a special edge case 
+   (return empty result array)
+
+// Create an empty queue and push the root of the tree into it.
+
+// While the queue is not empty:
+   // Count the number of nodes in the Queue
+   // Repeat that many times:
+
+      // Remove the next node from the front of the Queue
+      // Append the value to the result array
+
+      // If it has a left child, add the left child to the queue
+      // If it has a right child, add the right child to the queue
+
+class TreeNode {
+
+    int val
+
+    TreeNode left
+    TreeNode right
+
+    // n-ary TreeNode
+
+    List<TreeNode> children
+
+}
+
+List<List<Integer>> function getLevelOrder(TreeNode root) {
+
+    List<List<Integer>> result = new List()
+
+    if(root is null) return result
+
+    Queue<TreeNode> nodeQueue = new Queue()
+
+    nodeQueue.add(root)
+
+   while(nodeQueue is not empty){
+
+        // count number of items in the queue
+        int count = nodeQueue.size()
+        List temp = new List()
+
+        for(int i=0; i<count; i++){
+
+           TreeNode node = nodeQueue.remove()
+
+           // add to the output
+            temp.add(node.val)
+
+           // add children to queue
+           if(node.left is not null) nodeQueue.add(node.left)
+           if(node.right is not null) nodeQueue.add(node.right)
+        }
+        result.add(temp)
+   }
+    return result
+    
+}
+List<List<Integer>> function getNaryLevelOrder(TreeNode root) {
+
+    List<List<Integer>> result = new List()
+
+    if(root is null) return result
+
+    Queue<TreeNode> nodeQueue = new Queue()
+
+    nodeQueue.add(root)
+
+   while(nodeQueue is not empty){
+
+        // count number of items in the queue
+        int count = nodeQueue.size()
+        List temp = new List()
+
+        for(int i=0; i<count; i++){
+
+           TreeNode node = nodeQueue.remove()
+
+           // add to the output
+            temp.add(node.val)
+
+           // add children to queue
+           foreach (child in node.children) {
+             nodeQueue.add(child)
+           }
+
+        }
+        result.add(temp)
+   }
+    return result
+    
+}
+
+List<List<Integer>> function getzigZagLevelOrder(TreeNode root) {
+
+    List<List<Integer>> result = new List()
+    boolean leftToRight = true
+
+    if(root is null) return result
+
+    Queue<TreeNode> nodeQueue = new Queue()
+
+    nodeQueue.add(root)
+
+   while(nodeQueue is not empty){
+
+        // count number of items in the queue
+        int count = nodeQueue.size()
+        int[] temp = new int[count]
+
+        for(int i=0; i<count; i++){
+
+           TreeNode node = nodeQueue.remove()
+
+           int idx = i
+        if(not leftToRight) idx = count-1 - i
+           // add to the output
+            temp[idx]= node.val
+
+           // add children to queue
+           if(node.left is not null) nodeQueue.add(node.left)
+           if(node.right is not null) nodeQueue.add(node.right)
+        }
+       // if(not leftToRight) temp.reverse() // O(n)?
+
+        result.add(temp)
+        leftToRight = not leftToRight
+   }
+    return result
+    
+}
+
+List<Integer> function getRightSideView(TreeNode root) {
+
+    List<Integer> result = new List()
+
+    if(root is null) return result
+
+    Queue<TreeNode> nodeQueue = new Queue()
+
+    nodeQueue.add(root)
+
+   while(nodeQueue is not empty){
+
+        // count number of items in the queue
+        int count = nodeQueue.size()
+        int temp = 0
+
+        for(int i=0; i<count; i++){
+
+           TreeNode node = nodeQueue.remove()
+
+           // add to the output
+           temp = node.val
+
+           // add children to queue
+           if(node.left is not null) nodeQueue.add(node.left)
+           if(node.right is not null) nodeQueue.add(node.right)
+        }
+        result.add(temp)
+   }
+    return result
+    
+}
+
+List<List<Integer>> function getLevelOrderII(TreeNode root) {
+
+    List<List<Integer>> result = new List()
+
+    if(root is null) return result
+
+    Queue<TreeNode> nodeQueue = new Queue()
+
+    nodeQueue.add(root)
+
+   while(nodeQueue is not empty){
+
+        // count number of items in the queue
+        int count = nodeQueue.size()
+        List temp = new List()
+
+        for(int i=0; i<count; i++){
+
+           TreeNode node = nodeQueue.remove()
+
+           // add to the output
+            temp.add(node.val)
+
+           // add children to queue
+           if(node.left is not null) nodeQueue.add(node.left)
+           if(node.right is not null) nodeQueue.add(node.right)
+        }
+        result.add(temp)
+   }
+    return result.reverse()
+    
+}
+
+-------------------------------------------------------------
+Top Down Depth-First
+
+Flow of information travels from ROOT to LEAF
+
+// Handle an empty tree as a special edge case 
+   (return empty result array)
+
+// Create a recursive function to execute on every node.
+
+// Function: topDownDFS ( node, information to be passed down)
+   // Process information passed down (Pre-Order)
+
+   // Base Case: If Leaf Node, then do something if necessary.
+
+   // Recursive Case: (Not a leaf node)
+   // If the node has a LEFT child:  topDownDFS(node.left, info)
+   // If the node has a RIGHT child: topDownDFS(node.right, info) 
+
+   // Likely returns nothing back to the parent
+
+boolean function hasPathSum(TreeNode root, int sum) {
+
+    if(root is null) return false
+    
+    boolean psFlag = false
+
+
+    function pathSumHelper(TreeNode node, int sum){
+
+
+        if(psFlag) return
+
+        sum = sum - node.val
+
+        if(node.left is null and node.right is null){
+            if(sum == 0) psFlag = true
+            return
+        }
+
+        if(node.left is not null) pathSumHelper(node.left, sum )
+        if(node.right is not null) pathSumHelper(node.right, sum )
+    }
+
+    pathSumHelper(root, sum)
+    return psFlag
+
+}
+
+List<List<Integer>> function getSumPaths(TreeNode root, int sum) {
+
+    List<List<Integer>> result = new List()
+
+    if(root is null) return result
+
+
+    function pathSumHelper(TreeNode node, int sum, Stack<Integer> slate){
+
+        // pre order
+        sum = sum - node.val
+        slate.push(node.val)
+        
+        if(node.left is null and node.right is null){
+            if(sum == 0) {
+                result.add(slate.copy())
+            }
+            slate.pop()
+            return
+        }
+        
+        if(node.left is not null) {
+            pathSumHelper(node.left, sum, slate )
+        }
+
+        // in order
+
+        if(node.right is not null) {
+            pathSumHelper(node.right, sum, slate )            
+        }
+
+        // post order
+        slate.pop()
+    }
+
+    pathSumHelper(root, sum, new Stack())
+    return psFlag
+
+}
+
+--------------------------------------------------------------
+Bottom-Up Depth First
+
+Flow of information travels from LEAF to ROOT
+
+// Handle an empty tree as a special edge case 
+   (return empty result array)
+
+// Create a recursive function to execute on every node.
+// Function: bottomUpDFS ( node )
+
+   // Base Case: (Leaf Node) Return required data back to the 
+      parent for processing.
+
+   // Recursive Case: (Not a leaf node)
+   // If the node has a LEFT child:  
+      resultLeft = bottomUpDfs(node.left)
+
+   // If the node has a RIGHT child: 
+      resultRight = bottomUpDfs(node.right) 
+
+   // Process information sent back by child nodes (Post-Order)
+   // Returns information back to the parent
+
+int function getMaxDiameter(TreeNode root) {
+
+    int diameter = 0
+
+    if(root is null) return  diameter
+
+    int function diameterHelper(TreeNode node) {
+
+        if(node.left is null and node.right is null) return 0
+        
+        int leftMax = 0
+        int rightMax = 0
+
+        if(node.left is not null){
+            leftMax = diameterHelper(node.left) + 1
+        }   
+
+        if(node.right is not null){
+            rightMax = diameterHelper(node.right) + 1
+        }
+
+        int myDiameter = leftMax + rightMax
+
+        diameter = (myDiameter > diameter) ? myDiameter : diameter
+
+        return (leftMax > rightMax) ? leftMax : rightMax
+
+    }
+
+    diameterHelper(root)
+    return diameter
+
+}
+
+int function getUnivalSubtrees(TreeNode root) {
+    
+    if(root is null) return 0
+
+    int uvCount = 0
+
+     boolean function isUnival(TreeNode node) {
+        
+        if(node.left is null and node.right is null){
+            uvCount++
+            return true
+        }
+
+        boolean leftIsUnival = true
+        boolean rightIsUnival = true
+
+        if(node.left is not null){
+            leftIsUnival = isUnival(node.left)
+                           and (node.val == node.left.val) 
+        }
+
+        if(node.right is not null){
+            rightIsUnival = isUnival(node.right)
+                            and (node.val == node.right.val)
+        }
+
+        if(leftIsUnival and rightIsUnival) uvCount++
+        
+        return (leftIsUnival and rightIsUnival)
+      
+     }
+     isUnival(root)
+     return uvCount
+
+}
+
+------------------------------------------------------------------
+Tree Construction
+
+Divide and Conquer
+
+// Repeat for each node makeNode(array, start, end) and return a TreeNode.
+    // if the start value is greater than the 
+       end value, return nothing (Null)
+
+    // if the start value is equal to the end value,
+       return a new tree node with the value array[start]
+
+    // else, build the subtrees:
+
+    // Identify the sub-tree root node value and 
+       root_index in the array 
+
+    // Create a new node with value array[root_index]
+
+    // Identify the start and end position of 
+       the left subtree in the array.
+
+    // Identify the start and end position of 
+       the right subtree in the array.
+
+    // Recursive:
+    // Set the node.left = makeNode(array, leftStart, leftEnd)
+    // Set the node.right = makeNode(array, rightStart, rightEnd)
+
+    // return the subtree node.
+
+
+TreeNode function arrayToBST(int[] inputArr) {
+
+    TreeNode function bstHelper(int[] inputArr,  int s, int e){
+
+        if(s > e) return null
+
+        int mid = s + (e-s)/2
+
+        TreeNode root = new TreeNode(inputArr[mid])
+        
+        root.left = bstHelper(inputArr, s, mid-1)
+        root.right = bstHelper(inputArr, mid+1, e)
+        
+        return root
+    }
+    return bstHelper(inputArr, 0, inputArr.length-1)
+    
+}
+
+TreeNode function arrayToBT(int[] preorder, int[] inorder) {
+
+    Map<Integer, Integer> ioMap = new Map()
+
+    for(int i = 0; i< inorder.length; i++){
+        ioMap.put(inorder[i], i)
+    }
+
+    TreeNode function btHelper(int[] preorder,  int pos, int poe,
+                                int[] inorder, int ios, int ioe){
+
+        if(pos > poe) return null
+
+        int rootIdx = ioMap.get(preorder[pos]) // O(1)
+        int count = rootIdx - ios
+
+        TreeNode root = new TreeNode(preorder[pos])
+
+        // preorder
+        
+        root.left = btHelper(preorder, pos+1, pos + count,
+                             inorder, ios, rootIdx-1)
+
+        // inorder
+
+        root.right = btHelper(preorder, pos+count+1, poe,
+                            inorder, rootIdx+1, ioe)
+
+        // post order
+        
+        return root
+    }
+    return btHelper(preorder, 0, preorder.length-1,
+                    inorder, 0, inorder.length-1)
+    
+}
+
+Leetcode Questions Covered:
+
+102: Binary Tree Level Order Traversal
+429: N-ary Tree Level Order Traversal
+103: Binary Tree Zigzag Level Order Traversal
+199: Binary Tree Right Side View
+107: Binary Tree Level Order Traversal II
+
+112: Path Sum
+113: Path Sum II
+
+543: Diameter of Binary Tree
+250: Count Univalue Subtrees
+
+108: Convert Sorted Array to Binary Search Tree
+105: Construct Binary Tree from Preorder and Inorder Traversal
+
