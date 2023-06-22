@@ -21,7 +21,7 @@ Time complexity:
         dense graph: O(E x logV)
         sparse graph: O(V x logV)
 """
-import queue
+import heapq
 
 
 def primsAlgo(source: int, n: int, connections: list[list[int]]):
@@ -32,14 +32,14 @@ def primsAlgo(source: int, n: int, connections: list[list[int]]):
 
     captured = [-1 for _ in range(n)]
     captured[source] = 1
-    pq = queue.PriorityQueue(maxsize=0)
+    pq = []
     for (ngb, cost) in adjList[source]:
-        pq.put((cost, ngb))
+        heapq.heappush(pq, (cost, ngb))
 
     totalCost = 0
 
-    while pq.qsize > 0:
-        priority, node = pq.get()
+    while pq:
+        priority, node = heapq.heappush(pq)
         if captured[node] == 1:  # if node has already been capture, we let it go
             continue
 
@@ -48,6 +48,6 @@ def primsAlgo(source: int, n: int, connections: list[list[int]]):
 
         for (ngb, cost) in adjList[node]:
             if captured[node] == -1:
-                pq.put((cost, ngb))
+                heapq.heappush(pq, (cost, ngb))
 
     return totalCost

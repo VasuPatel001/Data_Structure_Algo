@@ -69,4 +69,4 @@ def KruskalsAlgo(connections: list[list[int]], n: int):
         return totalCost, MSTedges  # return both/either of these values depending on output required
 
     # we know that # of components > 1
-    return -1  # return default value of time as expected in problem statement
+    return -1  # return default value of cost as expected in problem statement

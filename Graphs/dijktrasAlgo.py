@@ -1,16 +1,16 @@
 """
-Shortest path from source to destination in a Weighted Directed Graph
+Shortest path from source to destination in a Weighted Directed Graph / (Undirected Graph) as well.
 Dijktra's Algo:
     It is greedy approach of selecting edges with minimum weights starting from a source vertex (captured) and
     keep on expanding captured area.
 
 Implementation:
-    Prims Algo uses priority queue
+    Dijktra's Algo uses priority queue
 """
 
 """
 Time complexity:
-    Time complexity for MST Prims algo: 
+    Time complexity for Dijktra's algo:
         since we are not changing the priority of the already existing node in pq;
         but rather we are adding duplicate values of nodes with different priority to pq
         so at most we would be adding all Edges (E) to pq
