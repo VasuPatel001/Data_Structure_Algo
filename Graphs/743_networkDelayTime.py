@@ -29,7 +29,7 @@ import queue
 
 
 class Solution:
-    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+    def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
         """
         Time Complexity:
             Inserting and deleting single element to heap-pq is O(logN) for N elements in heap-pq, since we have at most E elements in heap-pq and # of E can be at most V^2 for dense graph, so time complexity are:

@@ -39,7 +39,7 @@ def primsAlgo(source: int, n: int, connections: list[list[int]]):
     totalCost = 0
 
     while pq:
-        priority, node = heapq.heappush(pq)
+        priority, node = heapq.heappop(pq)
         if captured[node] == 1:  # if node has already been capture, we let it go
             continue
 

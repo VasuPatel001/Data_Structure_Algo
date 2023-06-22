@@ -21,7 +21,7 @@ Time complexity:
         dense graph: O(E x logV)
         sparse graph: O(V x logV)
 """
-import queue
+import heapq
 
 
 def dijktrasAlgo(source: int, n: int, connections: list[list[int]]):
@@ -39,12 +39,12 @@ def dijktrasAlgo(source: int, n: int, connections: list[list[int]]):
     # start capturing source node and begin the dijktra's algo
     captured[source] = 1
     distance[0] = 0
-    pq = queue.PriorityQueue(maxsize=0)
+    pq = []
     for (ngb, cost) in adjList[source]:
-        pq.put((cost, ngb))   
+        heapq.heappush(pq, (cost, ngb))
 
-    while pq.qsize > 0:
-        priority, node = pq.get()
+    while pq:
+        priority, node = heapq.heappop(pq)
         if captured[node] == 1:  # if node has already been capture, we let it go
             continue
 
@@ -55,6 +55,6 @@ def dijktrasAlgo(source: int, n: int, connections: list[list[int]]):
             if captured[node] == -1:
                 # NOTE: Main difference between prims and dijktra's algo is
                 # during pushing ngb with shortest distance to priority queue.
-                pq.put((distance[node] + cost, ngb))
+                heapq.heappush(pq, (distance[node] + cost, ngb))
 
     return distance  # we may return distance[] entirely or distance[destination] if asked for specific destination node
