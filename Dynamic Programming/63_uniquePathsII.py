@@ -27,7 +27,7 @@ obstacleGrid[i][j] is 0 or 1.
 
 
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
         if obstacleGrid[0][0] == 1:
             return 0
         
@@ -56,7 +56,6 @@ class Solution:
                 # considering obstacles
                 if obstacleGrid[row][col] == 1:
                     dp_table[row][col] = 0
-                else:
-                    dp_table[row][col] = dp_table[row-1][col] + dp_table[row][col-1]
+                dp_table[row][col] = dp_table[row-1][col] + dp_table[row][col-1]
 
         return dp_table[m-1][n-1]

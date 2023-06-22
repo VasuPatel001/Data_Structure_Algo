@@ -25,7 +25,7 @@ ui != vi
 0 <= wi <= 100
 All the pairs (ui, vi) are unique. (i.e., no multiple edges.)
 """
-import queue
+import heapq
 
 
 class Solution:
@@ -60,12 +60,12 @@ class Solution:
         numCaptured = 1
         lastDist = 0
 
-        pq = queue.PriorityQueue(maxsize=0)
+        pq = []
         for (ngb, time) in adjList[k]:
-            pq.put((distance[k] + time, ngb))
+            heapq.heappush(pq, (distance[k] + time, ngb))
 
-        while pq.qsize() > 0:
-            priority, node = pq.get()  # extract's min priority (time) value
+        while pq:
+            priority, node = heapq.heappop(pq)  # extract's min priority (time) value
             if captured[node] != -1:
                 continue
 
@@ -77,6 +77,6 @@ class Solution:
 
             for (ngb, time) in adjList[node]:
                 if captured[ngb] == -1:
-                    pq.put((distance[node] + time, ngb))
+                    heapq.heappush(pq, (distance[node] + time, ngb))
 
         return lastDist if numCaptured == n else -1
