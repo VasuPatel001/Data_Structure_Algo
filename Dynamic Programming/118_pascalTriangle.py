@@ -18,11 +18,11 @@ Constraints:
 
 
 class Solution:
-    def generate(self, numRows: int) -> List[List[int]]:
-        dp_table = [[1 for _ in range (row+1)] for row in range(numRows)] 
-        
+    def generate(self, numRows: int) -> list[list[int]]:
+        dp_table = [[1 for _ in range(row+1)] for row in range(numRows)]
+
         for row in range(2, len(dp_table)):
             for col in range(1, len(dp_table[row]) - 1):
                 dp_table[row][col] = dp_table[row-1][col-1] + dp_table[row-1][col]
-        
+
         return dp_table
