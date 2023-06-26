@@ -2,7 +2,7 @@
 Leetcode 876: Middle of the Linked List
 
 Given the head of a singly linked list, return the middle node of the linked list.
-If there are two middle nodes, return the second middle node. 
+If there are two middle nodes, return the SECOND/RIGHT middle node. 
 
 Example 1:
 Input: head = [1,2,3,4,5]
@@ -28,7 +28,30 @@ class ListNode:
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         ################################################################
+        # Preferred Method: Useful for broad range of problems including divide and conquer on linked list.
+        # IK Method: slow(tortoise) pointer moves @1x speed and ends at left/first
+        # middle (for even length of linked list), then move tortoise to right/second
+        # middle node manually.
+
+        # Note: IK's method of ending tortoise at left/first middle is helpful
+        # for implementing DIVIDE and CONQUER on singly linked list.
+        ################################################################
+        hare = head
+        tortoise = head
+
+        # IMP: Below while loop checks for hare.next BEFORE checking for hare.next.next 
+        # because, hare.next.next may return Error if hare.next did not exist and 
+        # we directly checked for hare.next.next
+        while hare.next is not None and hare.next.next is not None:
+            hare = hare.next.next
+            tortoise = tortoise.next
+        if hare.next is not None:
+            tortoise = tortoise.next
+        return tortoise
+
+        ################################################################
         # Fast implementation using Slow(1x speed) and Fast(2x speed) pointers
+        # Note: This method CANNOT be used for DIVIDE & CONQUER on singly linked list
         ################################################################
         slow = head
         fast = head
