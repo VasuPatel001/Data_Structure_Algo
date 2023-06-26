@@ -35,20 +35,29 @@ All the calls to pop and peek are valid.
 
 Follow-up: Can you implement the queue such that each operation is amortized O(1) time complexity? In other words, performing n operations will take overall O(n) time even if one of those operations may take longer.
 """
+from collections import deque
 
 
 class MyQueue:
-
     def __init__(self):
         # enqueue and dequeue are both stacks
-        self.enqueue = []
-        self.dequeue = []
+        self.enqueue = deque()
+        self.dequeue = deque()
+        self.size = 0
 
     def push(self, x: int) -> None:
         self.enqueue.append(x)
+        self.size += 1
 
     def pop(self) -> int:
-        if len(self.dequeue) > 0:
+        # queue is Empty
+        if self.size == 0:
+            return None
+
+        # queue is NOT Empty
+        self.size -= 1
+        # dequeue is not empty
+        if len(self.dequeue) > 0:    
             return self.dequeue.pop()
         # transfer elements from enqueue to dequeue
         while len(self.enqueue) > 0:
@@ -56,6 +65,11 @@ class MyQueue:
         return self.dequeue.pop()
 
     def peek(self) -> int:
+        # queue is Empty
+        if self.size == 0:
+            return None
+
+        # queue is NOT Empty
         if len(self.dequeue) > 0:
             return self.dequeue[-1]
         while len(self.enqueue) > 0:
@@ -63,7 +77,7 @@ class MyQueue:
         return self.dequeue[-1]
 
     def empty(self) -> bool:
-        return len(self.enqueue) + len(self.dequeue) == 0   
+        return self.size == 0
 
 # Your MyQueue object will be instantiated and called as such:
 # obj = MyQueue()

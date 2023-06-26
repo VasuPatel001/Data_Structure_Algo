@@ -39,7 +39,6 @@ Constraints:
 0 <= value <= 1000
 At most 3000 calls will be made to enQueue, deQueue, Front, Rear, isEmpty, and isFull.
 """
-import queue
 
 
 class MyCircularQueue:
