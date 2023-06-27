@@ -1,6 +1,8 @@
 """
 Leetcode 202: Happy Number
 
+https://uplevel.interviewkickstart.com/resource/rc-video-484810-924784-253-1605-4935802
+
 Write an algorithm to determine if a number n is happy.
 A happy number is a number defined by the following process:
 Starting with any positive integer, replace the number by the sum of the squares of its digits.
