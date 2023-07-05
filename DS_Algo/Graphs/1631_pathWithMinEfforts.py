@@ -51,6 +51,7 @@ class Solution:
         n = len(heights[0])
 
         captured = {}
+        # priority queue is (weight, (row, col))
         pq = [(0, (0, 0))]
 
         def getNgbs(row: int, col: int):
@@ -76,4 +77,4 @@ class Solution:
                 ngbx, ngby = ngb
                 if ngb not in captured:
                     heapq.heappush(pq, (max(effort, abs(heights[ngbx][ngby] - heights[nodex][nodey])),
-                                    ngb))
+                                        ngb))

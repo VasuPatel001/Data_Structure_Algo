@@ -22,7 +22,7 @@ def find(x: int, parent: list[int]):
         return x
 
     # recursive case
-    root_x = find(parent[x])
+    root_x = find(parent[x], parent)
     parent[x] = root_x
     return root_x
 
@@ -38,14 +38,14 @@ def minTimeWhenBecomesFriends(logs: list[list[int]], n: int):
     size = [1 for _ in range(n)]
     components = n
 
-    # logs = [[t, u, v], ...] 
+    # logs = [[t, u, v], ...]
     # logs is list of list having (timestamp, u, v) timestamp at which u and v became friends
     logs.sort()
 
     for (t, u, v) in logs:
         rootu = find(u, parent)
         rootv = find(v, parent)
-        
+
         if rootu != rootv:
             if size[rootu] < size[rootv]:
                 parent[rootu] = rootv
@@ -53,13 +53,13 @@ def minTimeWhenBecomesFriends(logs: list[list[int]], n: int):
             else:
                 parent[rootv] = rootu
                 size[rootu] += size[rootv]
-            
+
             # when union operation is performed, component is reduced by 1
             # Note: this is inside if condition
             components -= 1
-        
+
         if components == 1:
             return t  # timestamp at which everyone become friends
-    
+
     # we know that # of components > 1
     return -1  # return default value of time as expected in problem statement

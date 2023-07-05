@@ -44,6 +44,7 @@ def bridges(n: int, connections: list[int]):
 
         for neighbor in adjList[node]:
             if visited[neighbor] == -1:
+                parent[neighbor] = node
                 minArrival[node] = min(dfs(neighbor), minArrival[node])
             else:  # neighbor is already visited and CAN be a back edge
                 if parent[node] != neighbor:  # it is a back edge
