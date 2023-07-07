@@ -1,5 +1,6 @@
 """
 Leetcode 773: Sliding Puzzle
+This is a question from State Space Search
 
 On an 2 x 3 board, there are five tiles labeled from 1 to 5, and an empty square represented by 0. A move consists of choosing 0 and a 4-directionally adjacent number and swapping it.
 The state of the board is solved if and only if the board is [[1,2,3],[4,5,0]].
