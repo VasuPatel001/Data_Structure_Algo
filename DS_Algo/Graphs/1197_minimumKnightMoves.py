@@ -8,11 +8,12 @@ and one other move in orthogonal direction.
 Return the minimum number of moves required to place knight from (0, 0) to (x, y). It is guranteed that answer exist.
 """
 import heapq
-
+from collections import deque
 
 class Solution:
     def minKnightMoves(self, x: int, y: int):
         """
+        Method 1: A* search method
         Implement A* graph version where we keep track of captured coordinates
         where f(v) = g(v) +h(v)
         h(v) = heuristic of v
@@ -50,3 +51,37 @@ class Solution:
         for dir_x, dir_y in dirs:
             ngbs.append((x + dir_x), (y + dir_y))
         return ngbs
+
+        """
+        Method 2: Bidirectional Search
+        Bidrectional search runs in O(square root (regular BFS)) time complexity
+        """
+        # queue and visited[] for forward
+        qf = deque([90, 0])
+        visitedf = {}
+        visited[(0, 0)] = 0
+
+        # queue and visited[] for backward
+        qb = deque([(x, y)])
+        visitedb = {}
+        visiteb[(x, y)] = 0
+
+        while qf and qb:
+            # Forward queue
+            nodex, nodey = qf.popleft()
+            for ngb in self.getNgbs(nodex, nodey):
+                if ngb not in visitedf:
+                    visitedf[ngb] = 1 + visitedf[(nodex, nodey)]
+                    qf.append(ngb)
+                    if ngb in visitedb:
+                        return visitedf[ngb] + visitedb[ngb]
+            
+            # Backward queue
+            nodex, nodey = db.popleft()
+            for ngb in self.getNgbs(nodex, nodey):
+                if ngb not in visitedb:
+                    visitedb[ngb] = 1 + visitedb[(nodex, nodey)]
+                    qb.append(ngb)
+                    if ngb in visitedf:
+                        return visitedb[ngb] + visitedf[ngb]
+            

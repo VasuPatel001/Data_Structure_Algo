@@ -1,0 +1,21 @@
+Question:
+Design product view history feature for full-featured high-traffic eCommerce website like Amazon.com
+Use case : user comes to Amazon, browses a number of products, users goes back to home page : display all N recently viewed items
+
+Define API/Object Model
+Backend service has to store all data in memory : no database available
+Write an efficient data structure/algorithm that is able to process updates in o(1) time and retrieve history in o(n) time, where n is number of recently viewed items
+
+Solution:
+Input: User activity tracking
+Output: Timeline of recent views O(n)
+
+Functional Requirements:
+
+1. Product service: read user's recently viewed items
+2. Recently viewed items reads are passed to cache for in-memory access
+3. Source of the data is the user clicks/views products that is captured by product service and transmitted to Viewed Queues (MQs)
+4. Workers process the write request of recent viewed items and store it with timestamp (no TTL) in row order format to in-memory Cache and No SQL Database.
+5. Time stamp is added to each recently viewed items, so as to keep track of last 'n' viewed items.
+6. Process updates in O(1) time: when lastest recently viewed item is added with current time stamp, most previous history of viewed item is purged from the cache and hence addition of latest item takes place in O(1) time. Data Structure used for this purpose: deque or circular queues.
+7. Accessing recently viewed item in O(n) time: We access each of the last 'n' recently viewed by parsing over the list of recently viewed item.
