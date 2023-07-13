@@ -24,6 +24,15 @@ Constraints:
 
 class Solution:
     def maximumScore(self, nums: list[int], k: int) -> int:
+        """
+        Time Complexity:
+            O(3n) because we make left_span, right_span and find global_max
+            with if condition to update max_val
+        Space Complexity:
+            Input: O(n) 
+            Aux: O(n) because st[], left_span, right_span
+            Output: O(1), max_val is only returned
+        """
         # pre-computer LEFT spans for previous smaller value
         st = []
         left_span = [0 for _ in range(len(nums))]
@@ -49,11 +58,11 @@ class Solution:
             else:
                 right_span[i] = len(nums) - i
             st.append((nums[i], i))
-
+        
         # find local answer
-        globalmax = 0
+        max_val = 0
         for i in range(len(nums)):
             localans = nums[i] * (left_span[i] + right_span[i] - 1)
             if i - left_span[i] + 1 <= k <= i + right_span[i] - 1:
-                globalmax = max(globalmax, localans)
-        return globalmax
+                max_val = max(max_val, localans)
+        return max_val
