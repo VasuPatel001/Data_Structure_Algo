@@ -25,6 +25,42 @@ Constraints:
 class Solution:
     def maximumScore(self, nums: list[int], k: int) -> int:
         """
+        Method 2: Using Bidirectional search method having space O(1)
+        This is more efficient
+        Reference: https://drive.google.com/drive/u/0/folders/1rSZDgYuoOnSuEChM7m0VqI7me5MIJD2y (pg 17-23)
+        Time Complexity:
+            O(n) because we perform operation similar to merge routine
+        Space Complexity:
+            Input: O(n) 
+            Aux: O(1) since i, j pointers are used that spans out from k
+            Output: O(1), max_val is only returned
+        """
+        globalmax = nums[k]
+        i = k - 1
+        j = k + 1
+        currheight = nums[k]
+        while i >= 0 and j < len(nums):
+            if nums[i] < nums[j]:
+                currheight = min(currheight, nums[j])
+                globalmax = max(globalmax, (j-i)*currheight)
+                j += 1
+            else:  # nums[j] < nums[i]
+                currheight = min(currheight, nums[i])
+                globalmax = max(globalmax, (j-i)*currheight)
+                i -= 1
+        while i >= 0:
+            currheight = min(currheight, nums[i])
+            globalmax = max(globalmax, (j-i)*currheight)
+            i -= 1
+        while j < len(nums):
+            currheight = min(currheight, nums[j])
+            globalmax = max(globalmax, (j-i)*currheight)
+            j += 1
+        return globalmax
+
+
+        """
+        Method 1: Using Monotonic Stack having space O(n)
         Time Complexity:
             O(3n) because we make left_span, right_span and find global_max
             with if condition to update max_val
