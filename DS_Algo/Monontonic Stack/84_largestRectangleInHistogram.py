@@ -20,7 +20,7 @@ Constraints:
 
 
 class Solution:
-    def largestRectangleArea(self, heights: List[int]) -> int:
+    def largestRectangleArea(self, heights: list[int]) -> int:
         # pre-computer LEFT spans for previous smaller value
         st = []
         left_span = [0 for _ in range(len(heights))]
@@ -46,11 +46,10 @@ class Solution:
             else:
                 right_span[i] = len(heights) - i
             st.append((heights[i], i))
-        
+
         # find local answer
         globalmax = 0
         for i in range(len(heights)):
             localans = heights[i] * (left_span[i] + right_span[i] - 1)
             globalmax = max(globalmax, localans)
         return globalmax
-        

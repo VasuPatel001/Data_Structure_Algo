@@ -19,6 +19,8 @@ class Solution:
             hare = f(f(hare))
             tortoise = f(tortoise)
             if hare == tortoise:  # cycle detected
+                # Change in initialization of third_pointer as compared to cycle detection starting node (problem# 142)
+                # for problem 142, we initialized third_pointer = head, however he we initialize third_pointer to tortoise
                 third_pointer = tortoise
                 length = 1
                 while f(third_pointer) != tortoise:

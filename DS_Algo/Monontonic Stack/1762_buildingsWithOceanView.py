@@ -51,7 +51,7 @@ class Solution:
         result = []
         for _, i in monotonic_stack:
             result.append(i)
-        return monotonic_stack
+        return result
 
 
         """

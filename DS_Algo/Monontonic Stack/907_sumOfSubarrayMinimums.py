@@ -1,7 +1,7 @@
 """
 Leetcode 907: Sum of Subarray Minimums
 
-Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 109 + 7.
+Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 10^9 + 7.
 
 Example 1:
 Input: arr = [3,1,2,4]
@@ -48,7 +48,7 @@ class Solution:
                 span = i + 1
             # update localans and globalsum
             localans[i] += span * arr[i]
-            globalsum = (globalsum + localans[i]) % 1000000007
+            globalsum = (globalsum + localans[i]) % ((10 ** 9) + 7)
 
             # append arr[i] to st
             st.append((arr[i], i))

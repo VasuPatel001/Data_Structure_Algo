@@ -42,5 +42,3 @@ class Solution:
                     dp[i] = True
                     break
         return dp[0]
-
-        
