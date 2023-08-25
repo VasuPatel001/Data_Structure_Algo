@@ -5,7 +5,7 @@ import random
 def helper(A: list[int], start: int, end: int, index: int) -> int:
     if start >= end:
         return
-    
+
     # random pivot_idx selection
     pivot_idx = random.randint(start, end)
     A[start], A[pivot_idx] = A[pivot_idx], A[start]

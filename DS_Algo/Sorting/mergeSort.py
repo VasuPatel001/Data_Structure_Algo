@@ -88,22 +88,3 @@ def mergeSort(A: list[int]) -> list[int]:
 
     mSortHelper(A, 0, len(A)-1)
     return A
-
-def mergeSort(A: list[int]) -> list[int]:
-    def helper(A: list[int], start: int, end: int):
-        if start > end:
-            return
-        
-        # mid
-        mid = start + (end - start) // 2
-        helper(A, start, mid)
-        helper(A, mid+1, end)
-
-        # merge routin
-        i = start
-        j = mid + 1
-        while i <= mid and j <= end:
-            
-
-    helper(A, 0, len(A) - 1)
-    return A
