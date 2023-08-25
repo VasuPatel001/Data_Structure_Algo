@@ -37,6 +37,8 @@ class Solution:
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i-1]:  # to remove the possibility of duplicate triplets
                 continue
+
+            # below approach is similar to hoare's partitioning
             j = i + 1
             k = len(nums) - 1
             while j < k:

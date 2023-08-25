@@ -26,6 +26,13 @@ nums2.length == n
 
 class Solution:
     def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:
+        """
+        Time Complexity: O(log(m+n))
+        Space Complexity:
+            Input: O(n)
+            Aux: O(1) because we define i, j, l, r, Aleft, Aright, Bleft, Bright
+            Output: O(n)
+        """
         A, B = nums1, nums2
         total = len(nums1) + len(nums2)
         half = total // 2
