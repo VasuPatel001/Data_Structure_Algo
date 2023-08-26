@@ -29,16 +29,19 @@ class Solution:
         pq = []
         current_people = 0
         for i in range(len(trips)):
+            # Step 1: extract nextstart
             if i == len(trips) - 1:
                 nextstart = float('inf')
             else:
                 nextstart = trips[i+1][1]
 
+            # Step 2: start the CURRENT interval
             heapq.heappush(pq, (trips[i][2], trips[i][0]))
             current_people += trips[i][0]
             if current_people > capacity:
                 return False
 
+            # Step 3: End the CUREENT interval by 
             # restore capacity when min trip's end duration < nextstart
             while pq and pq[0][0] <= nextstart:
                 end, passenger = heapq.heappop(pq)

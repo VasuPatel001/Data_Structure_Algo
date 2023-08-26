@@ -23,7 +23,7 @@ class Solution:
         if cur_idx == len(s):
             result.append("".join(slate))
             return
-        
+
         # sub_problem != 0
         ch = s[cur_idx]
         if ch.isalpha():
