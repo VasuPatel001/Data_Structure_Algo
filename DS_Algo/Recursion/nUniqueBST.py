@@ -8,6 +8,7 @@ hence time complexity is O(2^n * n) because we are choosing 'n' different root e
 Space complexity: max call step depth = O(n)
 """
 
+
 def how_many_bsts(n):
     """
     Args:
@@ -17,11 +18,11 @@ def how_many_bsts(n):
     """
     # Write your code here.
     ans = 0
-    
+
     if n == 0 or n == 1:
         return 1
-    
+
     for i in range(1, n+1):
         ans = ans + (how_many_bsts(i - 1) * how_many_bsts(n - i))
-    
+
     return ans
