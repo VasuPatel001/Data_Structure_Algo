@@ -70,7 +70,6 @@ class Solution:
         Hence, total is O(2^n * n)
     Space Complexity:
         Input: O(n)
-        Aux: O(n)
         Output: O(2^n * n)
     """
     def helper(self, s: list[str], cur_idx: int):
