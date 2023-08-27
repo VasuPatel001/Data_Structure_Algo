@@ -1,5 +1,5 @@
 """ 
-Meeting Rooms II (N meeting Rooms): Leetcode 253
+Leetcode 253: Meeting Rooms II (N meeting Rooms)
 
 Given an array of meeting time intervals 'intervals' where intervals = [start, end]
 return the minimum number of meeting rooms needed.
@@ -11,6 +11,7 @@ Ex: intervals: [[7, 10], [2, 4]]
 Output: 1
 """
 import heapq
+
 
 def minMeetingRooms(intervals: list[list[int]]) -> int:
     intervals.sort()  # Presorting: O(N * logN)
