@@ -59,7 +59,7 @@ class Solution:
                     if color[source] == color[ngb]:
                         return False
             return True
-        
+
         def bfs_check_same_level(source):
             # nonlocal visited
             # nonlocal level

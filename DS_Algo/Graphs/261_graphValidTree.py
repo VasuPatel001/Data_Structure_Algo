@@ -75,7 +75,7 @@ def is_it_a_tree(node_count, edge_start, edge_end):
         bool
     """
     # Write your code here.
-    
+
     # Step 1: form a graph using adjacency_list representation
     adjacency_list = [[] for _ in range(node_count)]
     for i, j in zip(edge_start, edge_end):

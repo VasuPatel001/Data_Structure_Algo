@@ -38,18 +38,18 @@ def number_of_connected_components(n, edges):
      int32
     """
     # Write your code here.
-    
+
     # Step 1:form a graph representation using adjacency list representation
     adjacency_list = [[] for _ in range(n)]
-    
+
     for (i, j) in edges:
         # undirected graph, so i <-> j are connected both ways
         adjacency_list[i].append(j)
         adjacency_list[j].append(i)
-    
+
     # initialize visited[] to -1
     visited = [-1] * n
-    
+
     # Depth First seach method
     def dfs(source: int):
         nonlocal visited
