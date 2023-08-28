@@ -98,9 +98,9 @@ class Solution:
         # post-order slate cleaning work
         slate.pop()
 
-    
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> list[list[int]]:
-        if root == None: return []
+        if root is None:
+            return []
         result = []
         self.helper(root, targetSum, [], result)
         return result

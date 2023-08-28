@@ -36,9 +36,10 @@ class Solution:
         result = [0]
 
         def helper(node: TreeNode, targetSum: int, slate: list[int]):
+            # pre-order work
             slate.append(node.val)
             testSum = 0
-            for i in range(len(slate) -1, -1, -1):
+            for i in range(len(slate) - 1, -1, -1):
                 testSum += slate[i]
                 if testSum == targetSum:
                     result[0] += 1
@@ -49,6 +50,7 @@ class Solution:
             if node.left != None: helper(node.left, targetSum, slate)
             if node.right != None: helper(node.right, targetSum, slate)
 
+            # post order work of clearing slate
             slate.pop()
 
         helper(root, targetSum, [])

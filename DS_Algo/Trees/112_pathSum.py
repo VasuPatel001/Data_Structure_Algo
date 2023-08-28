@@ -81,11 +81,6 @@ boolean function hasPathSum(TreeNode root, int sum) {
 }
 """
 
-"""
-Time Complexity: O(N) because at the worst case we would need to visit all nodes to check if the sum is found
-Space Complexity: O(logN) for call stack size which is equal to the height of the tree.
-"""
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -95,13 +90,18 @@ class TreeNode:
 
 
 class Solution:
+    """
+    Time Complexity: O(N) because at the worst case we would need to visit all nodes to check if the sum is found
+    Space Complexity: O(logN) for call stack size which is equal to the height of the tree.
+    """
     def helper(self, node: TreeNode, remain: int) -> bool:
-        if node == None: return 
+        if node is None:
+            return
         # pre-order work
         remain = remain - node.val
-        
+
         # leaf node worker
-        if node.left == None and node.right == None:
+        if node.left is None and node.right is None:
             if remain == 0:
                 return True
             return False
@@ -109,7 +109,8 @@ class Solution:
         # internal node worker
         return self.helper(node.left, remain) or \
                self.helper(node.right, remain)  # Note: Importance of using return a or b when return type is bool and we can quit checking once we ecnounter True
-    
+
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        if root == None: return False
+        if root is None:
+            return False
         return self.helper(root, targetSum)
