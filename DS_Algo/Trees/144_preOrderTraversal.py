@@ -78,6 +78,7 @@ def preorder(root):
             stack[-1] = node, "arrival"
             # Pre-order work
             result.append(node.value)
+            # left node traversal
             if node.left != None:
                 stack.append((node.left, None))
 
@@ -85,6 +86,8 @@ def preorder(root):
             stack[-1] = node, "interim"
             # In-order work
             ##########################
+
+            # right node traversal
             if node.right != None:
                 stack.append((node.right, None))
 
@@ -92,5 +95,7 @@ def preorder(root):
             stack[-1] = node, "departure"
             # Post-order work
             ##########################
+
+            # pop the last element in the stack
             stack.pop()
     return result

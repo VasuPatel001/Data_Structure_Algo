@@ -42,7 +42,7 @@ def flip_upside_down(root):
     # Write your code here.
     if root is None: return None
     result = [None]
-    
+
     def dfs(node: BinaryTreeNode, parent: BinaryTreeNode, rightSibling: BinaryTreeNode):
         # pre-order work
         oldleft = node.left
@@ -50,15 +50,14 @@ def flip_upside_down(root):
         # updating pointers
         node.right = parent
         node.left = rightSibling
-        
+
         # leaf node left worker
         if oldleft == None and oldright == None:
             result[0] = node
-        
+
         # internal node worker "ONLY PASS LEFT"
         if oldleft is not None:
             dfs(oldleft, node, oldright)
-        
-    
+
     dfs(root, None, None)
     return result[0]

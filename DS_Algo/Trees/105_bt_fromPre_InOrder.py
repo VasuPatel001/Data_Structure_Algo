@@ -101,7 +101,7 @@ class Solution(object):
         root.right = self.helper(preorder, pos+count+1, poe,
                                  inorder, root_idx+1, ioe)
         return root
-    
+
     def buildTree(self, preorder, inorder):
         """
         :type preorder: List[int]
@@ -114,4 +114,3 @@ class Solution(object):
         root = self.helper(preorder, 0, len(preorder)-1,
                            inorder, 0, len(inorder)-1)
         return root
-

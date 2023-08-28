@@ -1,6 +1,6 @@
 """
 Leetcode 98: Validate Binary Search Tree
-  
+
 Is It A BST
 Given a binary tree, check if it is a binary search tree (BST). A valid BST does not have to be complete or balanced.
 
@@ -54,11 +54,11 @@ def is_bst(root):
         # pre-order work
         amibst = True
         smallest, largest = node.value, node.value
-        
+
         # individual leaf node worker
         if node.left == None and node.right == None:
             return smallest, largest, amibst
-        
+
         # internal node worker
         if node.left != None:
             s, l, b = helper(node.left)
@@ -73,8 +73,8 @@ def is_bst(root):
             largest = max(largest, l)
             if not b or s < node.value:
                 amibst = False
-        
+
         return smallest, largest, amibst
-    
+
     s, l, answer = helper(root)
     return answer
