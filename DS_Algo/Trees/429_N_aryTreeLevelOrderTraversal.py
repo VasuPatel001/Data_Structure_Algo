@@ -60,6 +60,7 @@ Time Complexity: O(N) because we make a one time pass over each nodes of the bin
 Space Complexity: O(N) because we use output array 'result'
 """
 
+
 # Definition for a Node.
 class Node:
     def __init__(self, val=None, children=None):
@@ -67,10 +68,13 @@ class Node:
         self.children = children
 
 from collections import deque
+
+
 class Solution:
     def levelOrder(self, root: 'Node') -> list[list[int]]:
         result = []
-        if root == None: return result
+        if root is None:
+            return None
         q = deque()
         q.append(root)
         while q:

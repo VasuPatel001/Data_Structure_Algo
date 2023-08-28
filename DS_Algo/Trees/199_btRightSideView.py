@@ -72,25 +72,25 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
+from collections import deque
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> list[int]:
-        if root == None: return []
-        
+        if root is None: return []
+
         result = []
-        q = queue.Queue(maxsize=0)
-        q.put(root)
-        
-        while not q.empty():
-            count = q.qsize()
+        q = deque()
+        q.append(root)
+
+        while q:
+            count = len(q)
             for i in range(count):
-                node = q.get()
+                node = q.popleft()
                 last_val = node.val  # we can keep on updating/create new last_val variable
 
                 # check for left, right to append to queue
-                if node.left is not None: q.put(node.left)
-                if node.right is not None: q.put(node.right)
-            
+                if node.left is not None: q.append(node.left)
+                if node.right is not None: q.append(node.right)
+
             result.append(last_val)
-        
+
         return result

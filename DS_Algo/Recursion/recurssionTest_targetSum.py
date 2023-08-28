@@ -27,14 +27,15 @@ Constraints:
 -1012 <= elements of the array, k <= 1012
 """
 
-"""
-Method used: exclusion/inclusion
-Uniqueness: use return include or exclude to return True as soon as one True condition is found
 
-Time Complexity: O(2^n * n), because 2^n # of leaf nodes in worst case and 'n' because internal node make slate
-Space Complexity: O(n), because auxillary slate is O(n) and call stack is also max O(n).
-"""
 def helper(arr: list[int], target: int, cur_idx: int, so_far: int, slate: list[int]):
+    """
+    Method used: exclusion/inclusion
+    Uniqueness: use return include or exclude to return True as soon as one True condition is found
+
+    Time Complexity: O(2^n * n), because 2^n # of leaf nodes in worst case and 'n' because internal node make slate
+    Space Complexity: O(n), because auxillary slate is O(n) and call stack is also max O(n).
+    """
     if so_far == target and len(slate) > 0:  # IMP: len(slate) > 0 is MUST because question asks for "NON-EMPTY" subsets
         return True
     

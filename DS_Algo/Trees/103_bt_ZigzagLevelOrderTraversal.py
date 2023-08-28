@@ -77,28 +77,31 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
+from collections import deque
 class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> list[list[int]]:
         result = []
-        if root == None: return result
-        q = queue.Queue(maxsize=0)
-        q.put(root)
+        if root is None:
+            return None
+        q = deque()
+        q.append(root)
         level = 0
-        while not q.empty():  # IMP: Use q.empty() mehtod only and NOT use while q: because it is giving TLE error
-            count = q.qsize()
+        while q:
+            count = len(q)
             temp = [0] * count
             for i in range(count):
-                node = q.get()
+                node = q.popleft()
                 idx = i
-                if level % 2: # odd
+                if level % 2:  # odd
                     idx = count - i - 1  # this method of reversing the alternating list is approprirate as opposed to list.reverse() method
                 temp[idx] = node.val
 
                 # check for left, right node
-                if node.left is not None: q.put(node.left)
-                if node.right is not None: q.put(node.right)
-                
+                if node.left is not None:
+                    q.append(node.left)
+                if node.right is not None:
+                    q.append(node.right)
+
             result.append(temp)
             level += 1
         return result
