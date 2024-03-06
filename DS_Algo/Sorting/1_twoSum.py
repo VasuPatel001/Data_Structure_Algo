@@ -26,8 +26,8 @@ Only one valid answer exists.
 """
 
 """
-Time Complextity: O(N) because at most we would need to add n-1 elements to dict befor finding that 0 and n-1 elements add to target value
-Space Complexity: O(N): because at most we would need to add n-1 elements to dict befor finding that 0 and n-1 elements add to target value
+Time Complextity: O(N) because at most we would need to add n-1 elements to dict before finding that 0 and n-1 elements add to target value
+Space Complexity: O(N): because at most we would need to add n-1 elements to dict before finding that 0 and n-1 elements add to target value
 """
 
 
