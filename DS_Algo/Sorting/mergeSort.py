@@ -35,7 +35,7 @@ def merge(A, start, mid, end):
     j = mid + 1
     aux = []
     while (i <= mid and j <= end):
-        if A[i] <= A[j]:
+        if A[i] <= A[j]:  # <= ensure stability
             aux.append(A[i])
             i += 1
         else:
