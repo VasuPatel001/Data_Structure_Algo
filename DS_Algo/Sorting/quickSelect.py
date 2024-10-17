@@ -41,6 +41,6 @@ def quickSelect(nums: list[int], k: int) -> int:
     Returns
     -------
     int
-        kth largest element to be extracted from sorted array 
+        kth largest element to be extracted from sorted array
     """
     return helper(nums, 0, len(nums)-1, len(nums)-k)

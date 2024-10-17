@@ -1,4 +1,5 @@
 
+
 def dutchNationalFlag(balls: list[str]) -> list[str]:
     """Given an input array of characters R, G, B in random order,
     sort them to have R, G & B stacked together
@@ -17,7 +18,7 @@ def dutchNationalFlag(balls: list[str]) -> list[str]:
         output: ['R', 'R', 'R', 'G', 'G', 'B', 'B', 'B']
     """
     r, g = -1, -1
-    for b in range(balls):
+    for b in range(len(balls)):
         if balls[b] == 'G':
             g += 1
             balls[b], balls[g] = balls[g], balls[b]
@@ -29,4 +30,11 @@ def dutchNationalFlag(balls: list[str]) -> list[str]:
         else:  # balls[b] == 'B'
             # nothing needs to be done
             # for loop will increment value of b
-    
+            continue
+    return balls
+
+
+if __name__ == "__main__":
+    lst = ['R', 'B', 'G', 'G', 'R', 'R', 'B', 'B']
+    result = dutchNationalFlag(lst)
+    print(result)
