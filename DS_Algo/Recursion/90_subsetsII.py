@@ -20,11 +20,22 @@ Constraints:
 -10 <= nums[i] <= 10
 """
 
+"""
+NOTE:
+.sort():
+    This is a method that is available on list objects. It modifies the list in-place, 
+    meaning it directly alters the original list without creating a new one. 
+    It returns `None`.
 
+
+sorted():
+    This is a built-in function that takes any iterable as an argument and 
+    returns a new sorted list, leaving the original iterable unchanged.
+"""
 class Solution:
     def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
         self.result = []
-        nums.sort()
+        nums.sort()  # NOTE: .sort() sorts the list "in-place", meaning it returns None
         self.helper(nums, 0, [])
         return self.result
 
@@ -51,3 +62,11 @@ class Solution:
 
         for pop_i in range(copies):
             slate.pop()
+
+
+if __name__ == "__main__":
+    solve = Solution()
+    nums = [1, 2, 2]
+    result = solve.subsetsWithDup(nums)
+    print(result)
+
