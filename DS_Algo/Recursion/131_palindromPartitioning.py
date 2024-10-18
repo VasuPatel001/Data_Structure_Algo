@@ -41,3 +41,9 @@ class Solution:
 
     def isPalindrome(self, slate: str):
         return slate == slate[::-1]
+
+
+if __name__ == "__main__":
+    solve = Solution()
+    s = "aab"
+    print(solve.partition(s))

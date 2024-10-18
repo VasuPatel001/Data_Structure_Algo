@@ -59,7 +59,7 @@ class Solution:
                 return True
 
     def helper(self, nums: list[int], row: int, results: list[list[int]]):
-        # row -> row and nums[row] -> col    
+        # row -> row and nums[row] -> col
         # back tracking case: returns if the queens placed from 0 to row - 1 does not satisfy constraint
         if self.back_track(nums, row):
             return
