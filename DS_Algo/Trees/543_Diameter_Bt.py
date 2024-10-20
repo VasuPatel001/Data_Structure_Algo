@@ -56,7 +56,7 @@ int function getMaxDiameter(TreeNode root) {
 
 """
 Time complexity: O(N) because we are plassing through each node at most once
-Space Coplexity: O(N) because 
+Space Coplexity: O(N) because recursive stack space can be at the most O(n) when all nodes are in just one direction
 """
 
 # Definition for a binary tree node.

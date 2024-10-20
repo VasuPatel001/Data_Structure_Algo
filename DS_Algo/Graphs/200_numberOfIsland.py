@@ -41,6 +41,14 @@ class Solution:
     def numIslands(self, grid: list[list[str]]) -> int:
         def getNeighbors(row, col):
             neighbors = []
+            possible_locs = [(row-1, col), (row+1, col), (row, col-1), (row, col+1)]
+            for x, y in possible_locs:
+                if x >= 0 and x < len(grid[0]):
+                    neighbors.append((x, y))
+                elif y >= 0 and y < len(grid):
+                    neighbors.append((x, y))
+
+            # Alternate longer method of calculating neighbors
             if row > 0:
                 neighbors.append([row-1, col])
             if row + 1 < len(grid):
@@ -49,6 +57,7 @@ class Solution:
                 neighbors.append([row, col-1])
             if col + 1 < len(grid[0]):
                 neighbors.append([row, col + 1])
+
             return neighbors
 
         # depth first search solution

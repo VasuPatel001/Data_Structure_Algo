@@ -76,7 +76,16 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
+"""
+Time Complexity:
+O(n*logn)
+Space Complexity:
+    input = O(n)
+    aux: (n)
+    recursive stack space: logn
+    Total O(NlogN)
+    
+"""
 class Solution:
     def helper(self, node: TreeNode, remain: int, slate: list[int], result: list[list[int]]):
         # pre-order work
@@ -84,7 +93,7 @@ class Solution:
         slate.append(node.val)
 
         # leaf node worker
-        if node.left == None and node.right == None:
+        if node.left is None and node.right is None:
             if remain == 0:
                 result.append(slate[:])
             # post-order slate cleaning work for leaf node worker
@@ -92,8 +101,8 @@ class Solution:
             return
 
         # internal node worker
-        if node.left != None: self.helper(node.left, remain, slate, result)
-        if node.right != None: self.helper(node.right, remain, slate, result)
+        if node.left is not None: self.helper(node.left, remain, slate, result)
+        if node.right is not None: self.helper(node.right, remain, slate, result)
 
         # post-order slate cleaning work
         slate.pop()

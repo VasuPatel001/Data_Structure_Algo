@@ -115,7 +115,7 @@ def is_it_a_tree(node_count, edge_start, edge_end):
                     visited[neighbor] = 1
                     parent[neighbor] = node
                     q.append(neighbor)
-                else: # potentially there could be a loop
+                else:  # potentially there could be a loop
                     if parent[node] != neighbor:
                         return True
         return False
