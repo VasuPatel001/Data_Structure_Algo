@@ -30,7 +30,7 @@ class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
         if obstacleGrid[0][0] == 1:
             return 0
-        
+
         m = len(obstacleGrid)
         n = len(obstacleGrid[0])
         dp_table = [[0 for _ in range(n)] for _ in range(m)]
@@ -56,6 +56,8 @@ class Solution:
                 # considering obstacles
                 if obstacleGrid[row][col] == 1:
                     dp_table[row][col] = 0
-                dp_table[row][col] = dp_table[row-1][col] + dp_table[row][col-1]
+                else:  # else condition is must needed here, this ensures dp_table[row][col] does NOT
+                    # get updated when obstacleGrid[row][col] == 1
+                    dp_table[row][col] = dp_table[row-1][col] + dp_table[row][col-1]
 
         return dp_table[m-1][n-1]
