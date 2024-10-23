@@ -52,16 +52,16 @@ class Solution:
 
             # if the day i is covered by a 7-day pass, then we have to assume that the previous 6 days were also covered with it
             j = i-1
-            while j >=0 and (table[j] >= days[i] - 6):
+            while j >= 0 and (table[j] >= days[i] - 6):
                 j -= 1
             if j >= 0:
                 case2 = table[j] + costs[1]
             else:
                 case2 = costs[1]
-            
+
             # if the day i is covered by a 30-day pass, then we have to assume that the previous 29 days were also covered with it
             j = i-1
-            while j >=0 and (table[j] >= days[i] - 29):
+            while j >= 0 and (table[j] >= days[i] - 29):
                 j -= 1
             if j >= 0:
                 case3 = table[j] + costs[2]
