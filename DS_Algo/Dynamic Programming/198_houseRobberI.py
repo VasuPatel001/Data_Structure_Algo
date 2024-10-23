@@ -34,8 +34,8 @@ class Solution:
             dp_list[2] = max(nums[0], nums[1])
 
         for idx in range(3, n+1):
-            dp_list[idx] = max(dp_list[idx-1], 
-                               dp_list[idx-2]+ nums[idx-1])
+            dp_list[idx] = max(dp_list[idx-1],
+                               dp_list[idx-2] + nums[idx-1])
         return dp_list[n]
 
         # Approach 2 (less efficient)
