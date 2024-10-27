@@ -31,6 +31,7 @@ class Solution(object):
             helper(A, smaller + 1, end)
 
         helper(A, 0, len(nums) - 1)
+        return nums
 
 A = [8, 7, 2, 1, 0, 9, 6]
 print("Unsorted Array")
