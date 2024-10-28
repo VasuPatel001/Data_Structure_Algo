@@ -45,6 +45,7 @@ def articulationPoints(n: int, connections: list[int]):
 
         for neighbor in adjList[node]:
             if visited[neighbor] == -1:
+                parent[neighbor] = node
                 ngb_arrival = dfs(neighbor)
                 # use ngb_arrival to check if a given node is an articulation point
                 # if any of the neighbor's arrival time >= arrival[node], it means that current node is an articulation point
