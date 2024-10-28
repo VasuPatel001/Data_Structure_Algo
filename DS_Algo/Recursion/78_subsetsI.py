@@ -21,36 +21,36 @@ All the numbers of nums are unique.
 
 
 class Solution:
-    def helper(self, nums: List[int], cur_idx: int, slate: List[int], output: List[List[int]]):
+    def helper(self, nums: List[int], cur_idx: int, slate: List[int]):
         ####################################################
         # Solution 1: Optimal
         ####################################################
         if cur_idx == len(nums):
-            output.append(slate)
+            self.output.append(slate)
             return
         
         # include
-        self.helper(nums, cur_idx + 1, slate + [nums[cur_idx]], output)
+        self.helper(nums, cur_idx + 1, slate + [nums[cur_idx]])
 
         # exclude
-        self.helper(nums, cur_idx + 1, slate, output)
+        self.helper(nums, cur_idx + 1, slate)
         
         ####################################################
         # Solution 2: Not that Optimal, but follows template of append and pop
         ####################################################
         if cur_idx == len(nums):
-            output.append(slate[:])
+            self.output.append(slate[:])  # need to get a copy of slate when using append and pop method
             return
         
         # include
         slate.append(nums[cur_idx])
-        self.helper(nums, cur_idx + 1, slate, output)
+        self.helper(nums, cur_idx + 1, slate)
         slate.pop()
 
         # exclude
-        self.helper(nums, cur_idx + 1, slate, output)
+        self.helper(nums, cur_idx + 1, slate)
 
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        output = []
-        self.helper(nums, 0, [], output)
-        return output
+        self.output = []
+        self.helper(nums, 0, [])
+        return self.output
