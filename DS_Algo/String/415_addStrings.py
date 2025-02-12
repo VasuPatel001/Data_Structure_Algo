@@ -1,5 +1,7 @@
 """
 Leetcode: 415. Add Strings
+Easy
+
 https://leetcode.com/problems/add-strings/description/?envType=company&envId=capital-one&favoriteSlug=capital-one-all 
 
 Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
