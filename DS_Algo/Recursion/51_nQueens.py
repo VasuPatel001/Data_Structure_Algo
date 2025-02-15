@@ -20,6 +20,63 @@ Constraints:
 
 
 class Solution:
+    #### Solution 1: Provided in IK slides: easy to implement since it follows template
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        results = []
+
+        def nonConflict(slate, col):
+            """
+            Returns True if last placed queen at row = len(slate) and col is not attacking
+            or being attacked by some other queen.
+            Row number are clearly different since each new queen placed is in the unique index.
+            If any other queen lies in the same col, return False
+            """
+            for row in range(len(slate)):
+                if slate[row] == col:
+                    return False
+                
+                # if any other queen lies in the diagonal position, then also return False
+                rowdiff = abs(len(slate) - row)
+                coldiff = abs(col - slate[row])
+                if rowdiff == coldiff:
+                    return False
+            # no other possibility for queen attack possible, hence return nonConflict = True
+            return True
+
+
+        def helper(slate, i, n):  # place queen i onwards
+            # leaf node worker
+            if i == n:
+                # all queens (from 0 to n-1) have been placed properly, so append to results
+                results.append(slate[:])
+                return
+            
+            # internal node worker
+            for col in range(n):
+                if nonConflict(slate, col):  # back tracking case ensured here
+                    slate.append(col)
+                    helper(slate, i+1, n)
+                    slate.pop()
+        
+        helper([], 0, n)
+
+        # convert results array to chess board
+        solutions = []
+        for result in results:
+            sol = []
+            board = [['.'] * n for _ in range(n)]
+            row = 0
+            for col in result:
+                board[row][col] = 'Q'
+                # convert board[row] from list to string
+                sol.append(''.join(board[row]))
+                row += 1
+            solutions.append(sol)
+        board = []
+        return solutions
+
+
+    #### Solution 2: Implemented by me
     def solveNQueens(self, n: int) -> list[list[str]]:
         if n == 1:
             return ['Q']
