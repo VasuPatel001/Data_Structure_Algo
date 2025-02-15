@@ -23,7 +23,7 @@ All the numbers of nums are unique.
 class Solution:
     def helper(self, nums: List[int], cur_idx: int, slate: List[int]):
         ####################################################
-        # Solution 1: Optimal
+        # Solution 1: Not that Optimal (because slate + [nums[cur_idx]] creates a new list)
         ####################################################
         if cur_idx == len(nums):
             self.output.append(slate)
@@ -36,7 +36,7 @@ class Solution:
         self.helper(nums, cur_idx + 1, slate)
         
         ####################################################
-        # Solution 2: Not that Optimal, but follows template of append and pop
+        # Solution 2: Optimal, and follows template of append and pop
         ####################################################
         if cur_idx == len(nums):
             self.output.append(slate[:])  # need to get a copy of slate when using append and pop method
