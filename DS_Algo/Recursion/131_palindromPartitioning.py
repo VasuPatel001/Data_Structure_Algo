@@ -34,9 +34,9 @@ class Solution:
             return
 
         # recursive case
-        for i in range(cur_idx, len(s)):
-            slate.append(s[cur_idx:i+1])
-            self.helper(s, i+1, slate)
+        for pick in range(cur_idx, len(s)):
+            slate.append(s[cur_idx:pick+1])
+            self.helper(s, pick+1, slate)
             slate.pop()
 
     def isPalindrome(self, slate: str):
