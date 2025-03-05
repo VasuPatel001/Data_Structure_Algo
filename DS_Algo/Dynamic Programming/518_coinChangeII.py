@@ -34,19 +34,38 @@ All the values of coins are unique.
 
 class Solution:
     def change(self, amount: int, coins: list[int]) -> int:
+        # Method 3: Systematic way of doing it (using IK method of 2D DP table)
+
+        dp = [[0 for _ in range(1+amount)] for _ in range(1+len(coins))]
+
+        # init col=0 (having amount=0) to 1, since there's only 1 way to make amount=0, i.e. not taking any coin
+        for row in range(1, 1+len(coins)):
+            dp[row][0] = 1
+
+        for coin in range(1, len(coins)+1):
+            for amt in range(1, amount+1):
+                if amt - coins[coin-1] >= 0:
+                    dp[coin][amt] = dp[coin-1][amt] + dp[coin][amt-coins[coin-1]]
+                else:
+                    dp[coin][amt] = dp[coin-1][amt]
+
+        return dp[coin][amount]
+
+        ##############################
         dp = [0] * (amount + 1)
         dp[0] = 1
-        
+
+        # Method 1:
         # IMP: looping over coins from l->r or r->l doesn't make a difference
         for coin in coins:
             for target in range(1, amount+1):
                 if target - coin >= 0:
                     dp[target] += dp[target - coin]
 
+        # Method 2:
         # for i in range(len(coins)-1, -1, -1):
         #     for target in range(1, amount+1):
         #         if target - coins[i] >= 0:
         #             dp[target] += dp[target - coins[i]]
 
-        print(dp)
         return dp[amount]
