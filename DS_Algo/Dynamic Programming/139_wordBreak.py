@@ -42,6 +42,9 @@ def word_break(s, words_dictionary):
      words_dictionary(list_str)
     Returns:
      bool
+
+    Time: O(n^2)
+    Space: O(n)
     """
     # Write your code here.
     n = len(s)
